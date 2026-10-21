@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>BalanceMe</title>
+    <meta name="description" content="BalanceMe – your health, your overview, your everyday." />
+    <meta name="theme-color" content="#1b8db3" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="logo" href="#/" aria-label="BalanceMe home">
+        Balance<svg class="logo-m" viewBox="0 0 64 52" aria-hidden="true"><path d="M5 48 C4 30 2 14 12 6 C22 -1 31 10 32 20 C33 10 42 -1 52 6 C62 14 60 30 59 48" /></svg>e
+      </a>
+      <nav class="tabs" aria-label="Main">
+        <a href="#/" data-tab="home">Home</a>
+        <a href="#/ask" data-tab="ask">Ask AI</a>
+        <a href="#/community" data-tab="community">Community</a>
+      </nav>
+    </header>
+
+    <main id="app"></main>
+
+    <nav class="bottom-nav" aria-label="Main">
+      <a href="#/" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></svg>Home</a>
+      <a href="#/ask" data-tab="ask"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" /><circle cx="9" cy="10.5" r="1" /><circle cx="12" cy="10.5" r="1" /><circle cx="15" cy="10.5" r="1" /></svg>Ask AI</a>
+      <a href="#/community" data-tab="community"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" /><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6" /><circle cx="17" cy="9" r="2.4" /><path d="M16 14.2c2.8.2 5 2.3 5 5.8" /></svg>Community</a>
+    </nav>
+
+    <template id="home">
+      <section class="hero">
+        <div class="hero-shape teal"></div>
+        <div class="hero-shape ink"></div>
+        <div class="hero-inner">
+          <p class="script">An app made for you ♡</p>
+          <h1>BALANCEME</h1>
+          <p class="tagline">Your health · your overview · your everyday</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#/ask">Ask the AI</a>
+            <a class="btn ghost" href="#/community">Join the community</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card mood">
+        <h2>How are you today?</h2>
+        <div class="faces" role="group" aria-label="Today's mood">
+          <button data-mood="great" aria-label="Great">😄</button>
+          <button data-mood="good" aria-label="Good">🙂</button>
+          <button data-mood="okay" aria-label="Okay">😐</button>
+          <button data-mood="low" aria-label="Low">🙁</button>
+          <button data-mood="bad" aria-label="Bad">😣</button>
+        </div>
+        <p class="mood-note muted"></p>
+      </section>
+
+      <section class="features">
+        <a class="feature" href="#/ask">
+          <span class="icon">💬</span>
+          <h3>AI health assistant</h3>
+          <p>Describe symptoms, results or worries and get a careful second opinion – and good questions to bring to your doctor.</p>
+        </a>
+        <a class="feature" href="#/community">
+          <span class="icon">🤝</span>
+          <h3>Community</h3>
+          <p>Share experiences, ask others who live with the same condition, and comment on each other's posts.</p>
+        </a>
+      </section>
+
+      <blockquote class="quote">
+        «Chronic illness affects more than the body – it affects the everyday, the energy and the life behind the symptoms.»
+      </blockquote>
+
+      <section class="card about">
+        <h2>Our goal</h2>
+        <p>
+          BalanceMe is an app for young and older people living with chronic illness. We want to make health information
+          easy to access and help people get a better overview of their health – gathering useful tools, information and
+          features in one place.
+        </p>
+        <p class="script big">You are not alone ♡</p>
+      </section>
+    </template>
+
+    <template id="ask">
+      <section class="chat">
+        <div class="chat-head">
+          <h1>Ask the AI</h1>
+          <button class="link" id="new-chat">New conversation</button>
+        </div>
+        <p class="disclaimer">
+          The AI gives general guidance, not a diagnosis. In an emergency call <strong>113</strong> (or your local emergency number).
+        </p>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div class="suggestions" id="suggestions">
+          <button>My joint pain is worse in the mornings – what could that mean?</button>
+          <button>How can I manage fatigue on bad days?</button>
+          <button>What should I ask my doctor about my new medication?</button>
+        </div>
+        <form id="ask-form" class="composer">
+          <textarea name="q" rows="1" placeholder="Describe your symptoms or ask a question…" required></textarea>
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+      </section>
+    </template>
+
+    <template id="community">
+      <section class="community">
+        <div class="community-head">
+          <div>
+            <h1>Community</h1>
+            <p class="muted">Experiences, tips and support from people who understand.</p>
+          </div>
+          <button class="btn primary" id="new-post-btn">New post</button>
+        </div>
+        <form id="post-form" class="card post-form" hidden>
+          <input name="title" maxlength="140" placeholder="Title" required />
+          <select name="topic"></select>
+          <textarea name="body" rows="4" maxlength="4000" placeholder="What would you like to share or ask?" required></textarea>
+          <div class="row">
+            <input name="author" maxlength="40" placeholder="Your name" required />
+            <button class="btn primary" type="submit">Publish</button>
+          </div>
+        </form>
+        <div class="chips" id="topics"></div>
+        <div id="posts" class="posts"></div>
+      </section>
+    </template>
+
+    <template id="post">
+      <section class="post-detail">
+        <a href="#/community" class="link">← Back to community</a>
+        <article class="card" id="post-body"></article>
+        <h2 class="comments-title">Comments</h2>
+        <div id="comments" class="comments"></div>
+        <form id="comment-form" class="card comment-form">
+          <textarea name="body" rows="3" maxlength="2000" placeholder="Write a kind and helpful comment…" required></textarea>
+          <div class="row">
+            <input name="author" maxlength="40" placeholder="Your name" required />
+            <button class="btn primary" type="submit">Comment</button>
+          </div>
+        </form>
+      </section>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
